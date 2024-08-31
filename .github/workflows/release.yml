@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04  # 使用较旧的 Ubuntu 版本
+    runs-on: ubuntu-16.04  # 使用较旧的 Ubuntu 版本，确保 glibc 版本兼容
 
     steps:
     - name: Checkout code
