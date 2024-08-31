@@ -1,0 +1,28 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # 当推送符合v*格式的标签时触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # 选择你需要的Python版本
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run build script
+      run: python build.py
+
+    - name: List build files
+      run: ls -R  # 递归列出当前目录下的所有文件
