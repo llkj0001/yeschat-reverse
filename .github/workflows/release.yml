@@ -28,9 +28,16 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run build script
-      run: python build.py
+    - name: Install PyInstaller
+      run: pip install pyinstaller
 
+    - name: Build executable with PyInstaller
+      run: |
+        pyinstaller ./api/main.py \
+        --onefile \
+        --name=yeschat2api \
+        --add-data='.env:.'
+    
     - name: List build files
       run: ls -R  # 递归列出当前目录下的所有文件
 
