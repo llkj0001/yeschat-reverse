@@ -1,15 +1,14 @@
 name: Build and Release
 
-# 定义手动触发
 on:
-  workflow_dispatch:  # 手动触发工作流
+  workflow_dispatch:
     inputs:
       tag_name:
-        description: 'Tag for the release'  # 输入标签名称
+        description: 'Tag for the release'
         required: true
         default: 'v1.0.0'
       release_name:
-        description: 'Release name'  # 输入发布名称
+        description: 'Release name'
         required: true
         default: 'Release v1.0.0'
 
@@ -24,7 +23,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'  # 选择你需要的Python版本
+        python-version: '3.x'
 
     - name: Install dependencies
       run: pip install -r requirements.txt
@@ -38,7 +37,7 @@ jobs:
     - name: Upload to GitHub Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: 'path/to/your/artifact/*'  # 替换为构建生成的文件路径
+        artifacts: 'dist/yeschat2api*'  # 生成的文件路径
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: ${{ github.event.inputs.tag_name }}
         name: ${{ github.event.inputs.release_name }}
